@@ -1,6 +1,8 @@
 package com.example.mido.databasetest;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -19,43 +21,69 @@ import java.io.OutputStream;
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
     EditText editName, editSuberName, editMark;
-    Button button;
+    Button button,button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(this);
 
-        copyDatabase(getApplicationContext(),"Student.db");
+        copyDatabase(getApplicationContext(), "Student.db");
 
-        editName = (EditText)findViewById(R.id.editName);
-
-        editMark = (EditText)findViewById(R.id.editMark);
-
-        editSuberName = (EditText)findViewById(R.id.editSuberName);
-        button = (Button)findViewById(R.id.button);
+        editName = (EditText) findViewById(R.id.editName);
+        editMark = (EditText) findViewById(R.id.editMark);
+        editSuberName = (EditText) findViewById(R.id.editSuberName);
+        button = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button2);
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean inserted =myDB.insertData(editName.getText().toString(),editSuberName.getText().toString(),editMark.getText().toString());
-                if( inserted == true){
-                    Toast.makeText(getApplicationContext(),"حبيبي تسلم ",Toast.LENGTH_LONG).show();
+                boolean inserted = myDB.insertData(editName.getText().toString(), editSuberName.getText().toString(), editMark.getText().toString());
+                if (inserted == true) {
+                    Toast.makeText(getApplicationContext(), "حبيبي تسلم ", Toast.LENGTH_LONG).show();
 
-                    copyDatabase(getApplicationContext(),"Student.db");
+                    copyDatabase(getApplicationContext(), "Student.db");
 
-                }
-                else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), " مش تسلم ", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor res = myDB.getAllData();
+                if (res.getCount() == 0) {
+                    //show massage
+                    showMessage("ERROR","Nothing Found");
+                    return;
+                }
+                StringBuffer buffer = new StringBuffer();
+                while (res.moveToNext()) {
+                    buffer.append("Id :" + res.getString(0) + "\n");
+                    buffer.append("Name :" + res.getString(1) + "\n");
+                    buffer.append("SuberName :" + res.getString(2) + "\n");
+                    buffer.append("Mark :" + res.getString(3) + "\n");
 
+                }
+                //show massage
+                showMessage("Data",buffer.toString());
+            }
+        });
 
+    }
 
+    public  void showMessage(String title, String massege) {
 
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(massege);
+        builder.show();
 
     }
 
