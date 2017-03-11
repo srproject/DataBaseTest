@@ -20,8 +20,8 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
-    EditText editName, editSuberName, editMark;
-    Button button,button2;
+    EditText editName, editSuberName, editMark,editID;
+    Button button,button2,button3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editName);
         editMark = (EditText) findViewById(R.id.editMark);
         editSuberName = (EditText) findViewById(R.id.editSuberName);
+        editID= (EditText)findViewById(R.id.editID);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +76,23 @@ public class MainActivity extends AppCompatActivity {
                 showMessage("Data",buffer.toString());
             }
         });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean isUpdataTO= myDB.updataData(editID.getText().toString(),editName.getText().toString(),
+                                                    editSuberName.getText().toString(),editMark.getText().toString());
+
+                if (isUpdataTO == true) {
+                    Toast.makeText(getApplicationContext(), " Data Is Update ", Toast.LENGTH_LONG).show();
+
+                    copyDatabase(getApplicationContext(), "Student.db");
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Data Not Update ", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
@@ -84,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(massege);
         builder.show();
+
 
     }
 

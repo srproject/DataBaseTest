@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+    /* function to add the data in database */
     public boolean insertData (String name,String suberName,String mark) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -55,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+/* function to show the data */
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -62,4 +64,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  res;
 
     }
+
+    /* function to updata data */
+
+    public boolean updataData(String id,String name,String suberName,String mark){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_1, id);
+        contentValues.put(Col_2, name);
+        contentValues.put(Col_3, suberName);
+        contentValues.put(Col_4, mark);
+        db.update(TABLE_NAME,contentValues,"ID = ?", new String[]{id});
+        return true;
+    }
+
 }

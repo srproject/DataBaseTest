@@ -10,7 +10,7 @@
 
     <EditText
         android:id="@+id/editName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/editSuberName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -28,13 +28,20 @@
 
     <EditText
         android:id="@+id/editMark"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         tools:layout_editor_absoluteY="143dp"
         tools:layout_editor_absoluteX="153dp" />
+
+    <EditText
+        android:id="@+id/editID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView"
@@ -60,9 +67,15 @@
         tools:layout_editor_absoluteY="157dp"
         tools:layout_editor_absoluteX="44dp" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="id" />
+
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD Date"
         tools:layout_editor_absoluteX="151dp"
@@ -73,4 +86,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="show data" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Updata" />
 </LinearLayout>
