@@ -3,7 +3,12 @@ package com.example.mido.databasetest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +18,8 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
+    EditText editName, editSuberName, editMark;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +27,35 @@ public class MainActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(this);
 
         copyDatabase(getApplicationContext(),"Student.db");
+
+        editName = (EditText)findViewById(R.id.editName);
+
+        editMark = (EditText)findViewById(R.id.editMark);
+
+        editSuberName = (EditText)findViewById(R.id.editSuberName);
+        button = (Button)findViewById(R.id.button);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean inserted =myDB.insertData(editName.getText().toString(),editSuberName.getText().toString(),editMark.getText().toString());
+                if( inserted == true){
+                    Toast.makeText(getApplicationContext(),"حبيبي تسلم ",Toast.LENGTH_LONG).show();
+
+                    copyDatabase(getApplicationContext(),"Student.db");
+
+                }
+                else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+
+
+
+
 
     }
 
