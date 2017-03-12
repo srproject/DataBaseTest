@@ -1,8 +1,6 @@
 package com.example.mido.databasetest;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -20,89 +18,151 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
-    EditText editName, editSuberName, editMark,editID;
-    Button button,button2,button3;
+    EditText editName, editSuberName, editMark,editid;
+    Button buttonadd,buttonup,buttondele,buttondall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(this);
 
-        copyDatabase(getApplicationContext(), "Student.db");
+        copyDatabase(getApplicationContext(),"Student.db");
 
-        editName = (EditText) findViewById(R.id.editName);
-        editMark = (EditText) findViewById(R.id.editMark);
-        editSuberName = (EditText) findViewById(R.id.editSuberName);
-        editID= (EditText)findViewById(R.id.editID);
-        button = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
+        editName = (EditText)findViewById(R.id.editName);
+        editMark = (EditText)findViewById(R.id.editMark);
+        editSuberName = (EditText)findViewById(R.id.editSuberName);
+        editid = (EditText)findViewById(R.id.editid);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonadd = (Button)findViewById(R.id.buttonadd);
+        buttonup = (Button)findViewById(R.id.buttonup);
+        buttondele = (Button)findViewById(R.id.buttondele);
+        buttondall = (Button)findViewById(R.id.buttondall);
+
+
+
+        buttonadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean inserted = myDB.insertData(editName.getText().toString(), editSuberName.getText().toString(), editMark.getText().toString());
-                if (inserted == true) {
-                    Toast.makeText(getApplicationContext(), "حبيبي تسلم ", Toast.LENGTH_LONG).show();
+                boolean inserted =myDB.insertData(editName.getText().toString(),editSuberName.getText().toString(),editMark.getText().toString());
+                if( inserted == true){
+                    Toast.makeText(getApplicationContext(),"حبيبي تسلم ",Toast.LENGTH_SHORT).show();
+
+                    copyDatabase(getApplicationContext(),"Student.db");
+
+                }
+                else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+        buttondele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                 boolean delete =myDB.deletData( editid.getText().toString());
+                if( delete == true) {
+                    Toast.makeText(getApplicationContext(), editid.getText().toString()+" is Deleted", Toast.LENGTH_SHORT).show();
 
                     copyDatabase(getApplicationContext(), "Student.db");
+                }else {
+                    Toast.makeText(getApplicationContext(), editid.getText().toString()+" not Deleted", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Toast.makeText(getApplicationContext(), " مش تسلم ", Toast.LENGTH_LONG).show();
+
+
+                }
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+
+
                 }
 
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        buttondall.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                try {
+                    boolean delete =myDB.deletallData( );
+                    if( delete == true) {
+                        Toast.makeText(getApplicationContext(), "all data is Deleted", Toast.LENGTH_SHORT).show();
+
+                        copyDatabase(getApplicationContext(), "Student.db");
+                    }else {
+                        Toast.makeText(getApplicationContext(),  " not Deleted", Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                return false;
+            }
+        });
+
+
+        buttonup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor res = myDB.getAllData();
-                if (res.getCount() == 0) {
-                    //show massage
-                    showMessage("ERROR","Nothing Found");
-                    return;
-                }
-                StringBuffer buffer = new StringBuffer();
-                while (res.moveToNext()) {
-                    buffer.append("Id :" + res.getString(0) + "\n");
-                    buffer.append("Name :" + res.getString(1) + "\n");
-                    buffer.append("SuberName :" + res.getString(2) + "\n");
-                    buffer.append("Mark :" + res.getString(3) + "\n");
+
+                try {
+                   boolean updated =myDB.updataData(editName.getText().toString(), editSuberName.getText().toString(), editMark.getText().toString(), editid.getText().toString());
+
+                    if( updated == true) {
+                        if (editName.getText().toString().trim().length() > 0
+                                && editSuberName.getText().toString().trim().length() > 0
+                                || editMark.getText().toString().trim().length() > 0
+                                || editid.getText().toString().trim().length() > 0) {
+
+                            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+
+                            copyDatabase(getApplicationContext(), "Student.db");
+                        } else {
+
+                            Toast.makeText(getApplicationContext(), "Enter ID and other data", Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    }else {
+
+                        Toast.makeText(getApplicationContext(), " data not update", Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+
+
 
                 }
-                //show massage
-                showMessage("Data",buffer.toString());
+
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                boolean isUpdataTO= myDB.updataData(editID.getText().toString(),editName.getText().toString(),
-                                                    editSuberName.getText().toString(),editMark.getText().toString());
 
-                if (isUpdataTO == true) {
-                    Toast.makeText(getApplicationContext(), " Data Is Update ", Toast.LENGTH_LONG).show();
 
-                    copyDatabase(getApplicationContext(), "Student.db");
 
-                } else {
-                    Toast.makeText(getApplicationContext(), "Data Not Update ", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
-    }
 
-    public  void showMessage(String title, String massege) {
-
-        AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(massege);
-        builder.show();
 
 
     }

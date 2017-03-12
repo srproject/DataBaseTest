@@ -8,27 +8,68 @@
     tools:context="com.example.mido.databasetest.MainActivity">
 
 
+    <TextView
+        android:id="@+id/textid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="30dp" />
+
     <EditText
-        android:id="@+id/editName"
-        android:layout_width="wrap_content"
+        android:id="@+id/editid"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="16dp" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:text="NAME"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="30dp" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBERNAME"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="89dp" />
+
     <EditText
         android:id="@+id/editSuberName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="75dp" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MARK"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="157dp" />
+
     <EditText
         android:id="@+id/editMark"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -36,35 +77,35 @@
         tools:layout_editor_absoluteY="143dp"
         tools:layout_editor_absoluteX="153dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/buttonadd"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NAME"
-        tools:layout_editor_absoluteY="30dp"
-        tools:layout_editor_absoluteX="34dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SUBERNAME"
-        tools:layout_editor_absoluteY="89dp"
-        tools:layout_editor_absoluteX="34dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MARK"
-        tools:layout_editor_absoluteY="157dp"
-        tools:layout_editor_absoluteX="44dp" />
+        android:text="ADD data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD Date"
+        android:text="update data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/buttondele"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/buttondall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete all data"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="291dp" />
 </LinearLayout>

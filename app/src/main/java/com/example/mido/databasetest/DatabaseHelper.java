@@ -67,15 +67,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /* function to updata data */
 
-    public boolean updataData(String id,String name,String suberName,String mark){
+    public boolean updataData(String name,String suberName,String mark,String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Col_1, id);
-        contentValues.put(Col_2, name);
-        contentValues.put(Col_3, suberName);
-        contentValues.put(Col_4, mark);
-        db.update(TABLE_NAME,contentValues,"ID = ?", new String[]{id});
+
+
+        String UpdateRecordQuery = "UPDATE "+TABLE_NAME+" SET NAME='" + name + "', SUBERNAME='" + suberName + "', MARK='" + mark + "' WHERE ID=" + id + ";";
+
+
+
+        db.execSQL(UpdateRecordQuery);
+
+         return true;
+    }
+    /* function to delet Data data */
+
+    public boolean deletData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        String UpdateRecordQuery = "DELETE FROM "+TABLE_NAME+" WHERE ID = "+id+";";
+
+
+
+        db.execSQL(UpdateRecordQuery);
+
         return true;
     }
+    /* function to delet all Data data */
+
+    public boolean deletallData( ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        String UpdateRecordQuery = "DELETE FROM "+TABLE_NAME;
+
+
+        db.execSQL(UpdateRecordQuery);
+
+        return true;
+    }
+
 
 }
