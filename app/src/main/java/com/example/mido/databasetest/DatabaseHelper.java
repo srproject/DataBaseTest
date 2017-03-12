@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static  final String DATABASE_NAME="Student.db";
-    public static  final String TABLE_NAME="Student";
+    public static final String TABLE_NAME="Student";
     public static  final String Col_1="ID";
     public static  final String Col_2="NAME";
     public static  final String Col_3="SUBERNAME";
