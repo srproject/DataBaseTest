@@ -9,8 +9,17 @@
 
 
     <EditText
+        android:id="@+id/editid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
         android:id="@+id/editName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -19,7 +28,7 @@
 
     <EditText
         android:id="@+id/editSuberName"
-        android:layout_width="wrap_content"
+        android:layout_width="399dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -28,7 +37,7 @@
 
     <EditText
         android:id="@+id/editMark"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -62,9 +71,33 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="402dp"
         android:layout_height="wrap_content"
-        android:text="ADD Date"
+        android:text="ADD Data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete Data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete ALL Data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update Data"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="291dp" />
 </LinearLayout>

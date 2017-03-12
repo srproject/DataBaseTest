@@ -18,8 +18,8 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
-    EditText editName, editSuberName, editMark;
-    Button button;
+    EditText editName, editSuberName, editMark,editid;
+    Button button,button2,button3,button4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
         editMark = (EditText)findViewById(R.id.editMark);
 
+
+        editid = (EditText)findViewById(R.id.editid);
+
+
         editSuberName = (EditText)findViewById(R.id.editSuberName);
         button = (Button)findViewById(R.id.button);
+        button2 = (Button)findViewById(R.id.button2);
+        button3 = (Button)findViewById(R.id.button3);
+        button4 = (Button)findViewById(R.id.button4);
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,16 +49,99 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean inserted =myDB.insertData(editName.getText().toString(),editSuberName.getText().toString(),editMark.getText().toString());
                 if( inserted == true){
-                    Toast.makeText(getApplicationContext(),"حبيبي تسلم ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"حبيبي تسلم ",Toast.LENGTH_SHORT).show();
 
                     copyDatabase(getApplicationContext(),"Student.db");
 
                 }
-                else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_LONG).show();
+                else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+
+
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    myDB.delete(editid.getText().toString());
+
+                    Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+                    copyDatabase(getApplicationContext(), "Student.db");
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "Enter ID First", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+            }
+        });
+        button3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                try {
+                myDB.deleteall();
+
+
+                copyDatabase(getApplicationContext(),"Student.db");
+
+                Toast.makeText(getApplicationContext(),"Deleted ALL",Toast.LENGTH_SHORT).show();
+
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "Erorr  --  "+e.toString(), Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                return false;
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    if (editName.getText().toString().trim().length() > 0
+                            && editSuberName.getText().toString().trim().length() > 0
+                            &&  editMark.getText().toString().trim().length() > 0
+                            &&  editid.getText().toString().trim().length() > 0) {
+                        myDB.update(editName.getText().toString(), editSuberName.getText().toString(), editMark.getText().toString(), editid.getText().toString());
+
+                        Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+                        copyDatabase(getApplicationContext(), "Student.db");
+                    }else {
+
+                        Toast.makeText(getApplicationContext(), "Enter ID and other data", Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+                }catch (Exception e){
+
+                    Toast.makeText(getApplicationContext(), "Enter ID First", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+            }
+        });
+
+
 
 
 
