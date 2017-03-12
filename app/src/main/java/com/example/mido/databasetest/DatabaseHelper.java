@@ -6,8 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.TextUtils;
-import android.widget.Toast;
 
 /**
  * Created by mido on 11/03/17.
@@ -22,7 +20,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static  final String Col_3="SUBERNAME";
     public static  final String Col_4="MARK";
 
-    public Boolean CheckEditTextEmpty ;
 
     public DatabaseHelper(Context context ) {
         super(context, DATABASE_NAME, null, 1);
@@ -42,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+    /* function to add the data in database */
     public boolean insertData (String name,String suberName,String mark) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -58,59 +56,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+/* function to show the data */
 
-    public void delete (String id ) {
+    public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String DeleteQuery = "DELETE FROM " +TABLE_NAME+" WHERE id=" + id + ";";
-
-        db.execSQL(DeleteQuery);
+        Cursor res= db.rawQuery("select * from " +TABLE_NAME,null);
+        return  res;
 
     }
 
-    public void deleteall () {
+    /* function to updata data */
+
+    public boolean updataData(String id,String name,String suberName,String mark){
         SQLiteDatabase db = this.getWritableDatabase();
-        String DeleteQuery = "DELETE FROM " +TABLE_NAME;
-
-
-        db.execSQL(DeleteQuery);
-
-    }
-
-    public void update(String name,String suberName,String mark,String id){
-
-
-
-
-        String UpdateRecordQuery = "UPDATE "+TABLE_NAME+" SET NAME='" + name + "', SUBERNAME='" + suberName + "', MARK='" + mark + "' WHERE ID=" + id + ";";
-        String GetSQliteQuery = "SELECT * FROM "+TABLE_NAME ;
-
-        CheckEditTextIsEmptyOrNot( name,suberName, mark);
-
-        if (CheckEditTextEmpty == false) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor;
-
-            db.execSQL(UpdateRecordQuery);
-
-            cursor = db.rawQuery(GetSQliteQuery, null);
-
-
-
-        }
-     }
-
-    public void CheckEditTextIsEmptyOrNot(String Name,String PhoneNumber, String subject ){
-
-
-
-        if(TextUtils.isEmpty(Name) || TextUtils.isEmpty(PhoneNumber) || TextUtils.isEmpty(subject)){
-
-            CheckEditTextEmpty = true ;
-
-        }
-        else {
-            CheckEditTextEmpty = false ;
-        }
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_1, id);
+        contentValues.put(Col_2, name);
+        contentValues.put(Col_3, suberName);
+        contentValues.put(Col_4, mark);
+        db.update(TABLE_NAME,contentValues,"ID = ?", new String[]{id});
+        return true;
     }
 
 }
