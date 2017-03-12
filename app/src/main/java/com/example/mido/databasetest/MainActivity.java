@@ -1,6 +1,7 @@
 package com.example.mido.databasetest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -19,7 +20,7 @@ import java.io.OutputStream;
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
     EditText editName, editSuberName, editMark,editid;
-    Button buttonadd,buttonup,buttondele,buttondall;
+    Button buttonadd,buttonup,buttondele,buttondall,buttonshow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         buttonup = (Button)findViewById(R.id.buttonup);
         buttondele = (Button)findViewById(R.id.buttondele);
         buttondall = (Button)findViewById(R.id.buttondall);
+        buttonshow= (Button)findViewById(R.id.buttonshow);
 
 
 
@@ -154,6 +156,16 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+
+            }
+        });
+
+        buttonshow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,list.class);
+                startActivity(intent);
 
             }
         });

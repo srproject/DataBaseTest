@@ -108,4 +108,13 @@
         android:text="delete all data"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/buttonshow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Show Data"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="291dp" />
 </LinearLayout>
