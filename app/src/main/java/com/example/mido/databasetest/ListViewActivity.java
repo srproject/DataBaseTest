@@ -2,10 +2,12 @@ package com.example.mido.databasetest;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,10 +27,12 @@ public class ListViewActivity extends AppCompatActivity {
     ListView LISTVIEW;
     Button buuplist;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
 
 
         LISTVIEW = (ListView) findViewById(R.id.list);
@@ -41,6 +45,7 @@ public class ListViewActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 ShowSQLiteDBdata() ;
+
 
 
             }
@@ -56,39 +61,56 @@ public class ListViewActivity extends AppCompatActivity {
 
     private void ShowSQLiteDBdata() {
 
-        SQLITEDATABASE = SQLITEHELPER.getWritableDatabase();
+        new CountDownTimer(1200, 1000) {
 
-        cursor = SQLITEDATABASE.rawQuery("SELECT * FROM Student", null);
+            public void onTick(long millisUntilFinished) {
+                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+            }
 
-        ID_ArrayList.clear();
-        NAME_ArrayList.clear();
-        PHONE_NUMBER_ArrayList.clear();
-        SUBJECT_ArrayList.clear();
+            public void onFinish() {
 
-        if (cursor.moveToFirst()) {
-            do {
-                ID_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_1)));
+                SQLITEDATABASE = SQLITEHELPER.getWritableDatabase();
 
-                NAME_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_2)));
+                cursor = SQLITEDATABASE.rawQuery("SELECT * FROM Student", null);
 
-                PHONE_NUMBER_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_3)));
+                ID_ArrayList.clear();
+                NAME_ArrayList.clear();
+                PHONE_NUMBER_ArrayList.clear();
+                SUBJECT_ArrayList.clear();
 
-                SUBJECT_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_4)));
+                if (cursor.moveToFirst()) {
+                    do {
 
-            } while (cursor.moveToNext());
-        }
+                        ID_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_1)));
 
-        ListAdapter = new SQLiteListAdapter(ListViewActivity.this,
+                        NAME_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_2)));
 
-                ID_ArrayList,
-                NAME_ArrayList,
-                PHONE_NUMBER_ArrayList,
-                SUBJECT_ArrayList
+                        PHONE_NUMBER_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_3)));
 
-        );
+                        SUBJECT_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_4)));
 
-        LISTVIEW.setAdapter(ListAdapter);
+                    } while (cursor.moveToNext());
+                }
 
-        cursor.close();
+                ListAdapter = new SQLiteListAdapter(ListViewActivity.this,
+
+                        ID_ArrayList,
+                        NAME_ArrayList,
+                        PHONE_NUMBER_ArrayList,
+                        SUBJECT_ArrayList
+
+                );
+
+                LISTVIEW.setAdapter(ListAdapter);
+
+                cursor.close();
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+             }
+
+        }.start();
+
+
+
+
     }
 }

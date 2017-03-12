@@ -5,24 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mido.databasetest.list"
+    tools:context="com.example.mido.databasetest.ListViewActivity"
     android:weightSum="1">
+
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
 
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="443dp"
+        android:layout_height="420dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp"></ListView>
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_weight="1.04">
+
+
+
+
+    </ListView>
+
 
 
     <Button
         android:id="@+id/buuplist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="update" />
+        android:layout_height="54dp"
+         android:text="update" />
+
+
 
 
 </LinearLayout>
