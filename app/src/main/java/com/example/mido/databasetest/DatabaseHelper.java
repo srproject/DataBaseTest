@@ -19,6 +19,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static  final String Col_2="NAME";
     public static  final String Col_3="LON";
     public static  final String Col_4="LAT";
+    public static final String TABLE_NAME2="event";
+    public static  final String event_id="event_id";
+    public static  final String event_type="event_type";
+    public static  final String event_det="event_det";
+    public static  final String event_photo="event_photo";
 
 
     public DatabaseHelper(Context context ) {
@@ -30,12 +35,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table Student (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME VARCHAR ,LON VARCHAR ,LAT VARCHAR)" );
+        db.execSQL("create table "+TABLE_NAME2+" ("+event_id+" INTEGER PRIMARY KEY AUTOINCREMENT, "+event_type+" VARCHAR ,"+event_det+" VARCHAR ,"+event_photo+" BLOB)" );
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS"+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS"+TABLE_NAME2);
         onCreate(db);
 
     }
@@ -56,11 +63,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    /* function to add the data in database */
+    public boolean insertDataforeventtest (String ievent_type,String ievent_det) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(event_type, ievent_type);
+        contentValues.put(event_det, ievent_det);
+        //contentValues.put(event_photo, ievent_photo);
+
+
+        long result = db.insert(TABLE_NAME2, null, contentValues);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 /* function to show the data */
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res= db.rawQuery("select * from " +TABLE_NAME,null);
+        return  res;
+
+    }
+
+    //function to show the data */
+
+    public Cursor getAllDataforeventtest() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res= db.rawQuery("select * from " +TABLE_NAME2,null);
         return  res;
 
     }

@@ -1,4 +1,4 @@
-package com.example.mido.databasetest;
+package com.example.mido.databasetest.stu;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,11 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.mido.databasetest.DatabaseHelper;
+import com.example.mido.databasetest.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListViewActivity extends AppCompatActivity {
 

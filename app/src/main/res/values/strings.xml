@@ -2,4 +2,17 @@
     <string name="app_name">DataBaseTest</string>
     <string name="title_activity_list">list</string>
     <string name="title_activity_maps">Map</string>
+
+
+
+
+    <!-- strings for TimeLine (Home) -->
+    <string name="event_type">event type</string>
+    <string name="account_name">user name</string>
+    <string name="description">A description is a phrase or sentence that tells you what something is,
+     </string>
+    <string name="number_comment">0 Coments</string>
+    <string name="number_like">0 Likes</string>
+    <string name="number_share">0 Shares</string>
+
 </resources>

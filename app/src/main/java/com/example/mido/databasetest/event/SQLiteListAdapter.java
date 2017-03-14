@@ -1,16 +1,19 @@
-package com.example.mido.databasetest;
+package com.example.mido.databasetest.event;
 
 /**
  * Created by sr on 3/12/17.
  */
 
-import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.mido.databasetest.R;
+
+import java.util.ArrayList;
 
 public class SQLiteListAdapter extends BaseAdapter {
 

@@ -1,0 +1,280 @@
+<android.support.v4.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/svhome"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:id="@+id/lohome"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/hprofile"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="17dp"
+
+            app:srcCompat="@mipmap/hero"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="325dp"
+            android:layout_height="match_parent"
+            app:cardElevation="3dp"
+            app:cardUseCompatPadding="false"
+            app:cardPreventCornerOverlap="true"
+            app:cardCornerRadius="1dp"
+            android:divider="#E6E6E6"
+            android:dividerHeight="2px"
+            android:layout_alignTop="@+id/hprofile"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/hprofile">
+
+
+            <TextView
+                android:id="@+id/event_type"
+                android:text="@string/event_type"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/title12"
+                android:text="@string/account_name"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#000"
+                android:textSize="15dp" />
+
+
+
+
+
+            <ImageView
+                android:id="@+id/imagetype"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                app:cardCornerRadius="50dp"
+                app:srcCompat="@drawable/event"
+
+                />
+
+            <TextView
+                android:id="@+id/des1"
+                android:layout_width="265dp"
+                android:layout_height="97dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/title1"
+                android:layout_gravity="left"
+                android:layout_marginBottom="100dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="70dp"
+                android:text="@string/description"
+                android:textStyle="normal"
+                android:elegantTextHeight="true"
+                android:textColor="#000"
+
+                />
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabhcomm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="380dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="left"
+
+                app:elevation="6dp"
+                app:pressedTranslationZ="12dp"
+
+                app:srcCompat="@mipmap/srcomment"
+                app:layout_behavior="com.codepath.floatingactionbuttontest.ScrollAwareFABBehavior" />
+
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabhlike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="380dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="60dp"
+                app:elevation="6dp"
+                app:layout_behavior="com.codepath.floatingactionbuttontest.ScrollAwareFABBehavior"
+
+                app:pressedTranslationZ="12dp"
+                app:srcCompat="@mipmap/srlike" />
+
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabhdislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="380dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginBottom="20dp"
+                app:elevation="6dp"
+                app:pressedTranslationZ="12dp"
+                app:srcCompat="@mipmap/srdislike00"
+                app:layout_behavior="com.codepath.floatingactionbuttontest.ScrollAwareFABBehavior" />
+
+
+
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabhshare1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="160dp"
+                android:layout_marginTop="380dp"
+                android:layout_marginBottom="20dp"
+                app:elevation="6dp"
+                app:pressedTranslationZ="12dp"
+
+                app:srcCompat="@mipmap/srshare"
+                app:layout_behavior="com.codepath.floatingactionbuttontest.ScrollAwareFABBehavior" />
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/space1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btn2"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="425dp"
+                android:text="|"
+                android:textColor="#a0000000"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/likehn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btn2"
+                android:layout_marginLeft="117dp"
+                android:layout_marginTop="425dp"
+                android:text="@string/number_like" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="218dp"
+
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="90dp"
+                app:cardCornerRadius="50dp"
+                app:srcCompat="@mipmap/egypt"
+
+                />
+
+            <TextView
+                android:id="@+id/space2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btn2"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="425dp"
+                android:text="|"
+                android:textColor="#a0000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/commhn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btn2"
+                android:layout_gravity="left"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="425dp"
+                android:text="@string/number_comment" />
+
+            <TextView
+                android:id="@+id/sharen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btn2"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="425dp"
+                android:text="@string/number_share" />
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+        <!-- TWO -->
+        <!-- TWO -->
+        <!-- TWO -->
+        <!-- TWO -->
+        <!-- TWO -->
+        <!-- TWO -->
+
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView >
