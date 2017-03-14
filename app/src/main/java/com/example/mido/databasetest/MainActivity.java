@@ -160,6 +160,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonshow.setOnLongClickListener(new View.OnLongClickListener() {
+                                              @Override
+                                              public boolean onLongClick(View v) {
+                                                  Intent intent=new Intent(MainActivity.this,MapsActivity.class);
+                                                  startActivity(intent);
+
+                                                  return false;
+                                              }
+                                          });
+
+
         buttonshow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
 

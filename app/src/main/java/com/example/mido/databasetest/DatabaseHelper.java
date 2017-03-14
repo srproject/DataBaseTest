@@ -17,8 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME="Student";
     public static  final String Col_1="ID";
     public static  final String Col_2="NAME";
-    public static  final String Col_3="SUBERNAME";
-    public static  final String Col_4="MARK";
+    public static  final String Col_3="LON";
+    public static  final String Col_4="LAT";
 
 
     public DatabaseHelper(Context context ) {
@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table Student (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT ,SUBERNAME TEXT ,MARK INTEGER)" );
+        db.execSQL("create table Student (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME VARCHAR ,LON VARCHAR ,LAT VARCHAR)" );
 
     }
 
@@ -40,12 +40,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     /* function to add the data in database */
-    public boolean insertData (String name,String suberName,String mark) {
+    public boolean insertData (String name,String lon,String lat) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_2, name);
-        contentValues.put(Col_3, suberName);
-        contentValues.put(Col_4, mark);
+        contentValues.put(Col_3, lon);
+        contentValues.put(Col_4, lat);
 
 
         long result = db.insert(TABLE_NAME, null, contentValues);
@@ -67,11 +67,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /* function to updata data */
 
-    public boolean updataData(String name,String suberName,String mark,String id){
+    public boolean updataData(String name,String lon,String lat,String id){
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        String UpdateRecordQuery = "UPDATE "+TABLE_NAME+" SET NAME='" + name + "', SUBERNAME='" + suberName + "', MARK='" + mark + "' WHERE ID=" + id + ";";
+        String UpdateRecordQuery = "UPDATE "+TABLE_NAME+" SET NAME='" + name + "', LON='" + lon + "', LAT='" + lat + "' WHERE ID=" + id + ";";
 
 
 

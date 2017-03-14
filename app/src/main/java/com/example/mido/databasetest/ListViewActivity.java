@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -80,6 +81,9 @@ public class ListViewActivity extends AppCompatActivity {
 
                 if (cursor.moveToFirst()) {
                     do {
+
+                        Log.i("SR","DATALIST");
+
 
                         ID_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Col_1)));
 
