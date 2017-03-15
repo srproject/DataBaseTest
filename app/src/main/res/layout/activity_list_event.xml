@@ -10,7 +10,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/loadingPanel"
+        android:id="@+id/loadingPanelev"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -25,7 +25,7 @@
 
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/listev"
         android:layout_width="match_parent"
         android:layout_height="420dp"
         tools:layout_editor_absoluteX="8dp"
@@ -40,7 +40,7 @@
 
 
     <Button
-        android:id="@+id/buuplist"
+        android:id="@+id/buuplistev"
         android:layout_width="match_parent"
         android:layout_height="54dp"
          android:text="update" />

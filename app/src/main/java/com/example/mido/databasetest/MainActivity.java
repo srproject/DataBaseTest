@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mido.databasetest.event.ListViewEventActivity;
 import com.example.mido.databasetest.stu.ListViewActivity;
 
 import java.io.File;
@@ -21,7 +22,7 @@ import java.io.OutputStream;
 public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
     EditText editName, editSuberName, editMark,editid;
-    Button buttonadd,buttonup,buttondele,buttondall,buttonshow;
+    Button buttonadd,buttonup,buttondele,buttondall,buttonshow,buttonshowevent,buttonshowmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         buttondele = (Button)findViewById(R.id.buttondele);
         buttondall = (Button)findViewById(R.id.buttondall);
         buttonshow= (Button)findViewById(R.id.buttonshow);
+        buttonshowevent= (Button)findViewById(R.id.buttonshowevent);
+        buttonshowmap= (Button)findViewById(R.id.buttonshowmap);
 
 
 
@@ -55,11 +58,30 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else{                    Toast.makeText(getApplicationContext()," مش تسلم ",Toast.LENGTH_SHORT).show();
+                    copyDatabase(getApplicationContext(),"Student.db");
+
                 }
 
             }
         });
 
+
+        buttonadd.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                boolean inserted =myDB.insertDataforeventtest(editName.getText().toString(),editSuberName.getText().toString());
+                if( inserted == true){
+                    Toast.makeText(getApplicationContext(),"حبيبي تسلم event",Toast.LENGTH_SHORT).show();
+
+                    copyDatabase(getApplicationContext(),"Student.db");
+
+                }
+                else{                    Toast.makeText(getApplicationContext()," مش تسلم event",Toast.LENGTH_SHORT).show();
+                }
+return false;
+
+            }
+        });
 
 
         buttondele.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +118,17 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     boolean delete =myDB.deletallData( );
+                    if( delete == true) {
+
+                        copyDatabase(getApplicationContext(), "Student.db");
+                    }else {
+                        Toast.makeText(getApplicationContext(),  " not Deleted", Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+                    boolean deleteevent =myDB.deletallDataevent( );
                     if( delete == true) {
                         Toast.makeText(getApplicationContext(), "all data is Deleted", Toast.LENGTH_SHORT).show();
 
@@ -161,22 +194,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonshow.setOnLongClickListener(new View.OnLongClickListener() {
-                                              @Override
-                                              public boolean onLongClick(View v) {
-                                                  Intent intent=new Intent(MainActivity.this,MapsActivity.class);
-                                                  startActivity(intent);
 
-                                                  return false;
-                                              }
-                                          });
+
 
 
         buttonshow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(MainActivity.this,ListViewActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        buttonshowmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 Intent intent=new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+        buttonshowevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,ListViewEventActivity.class);
                 startActivity(intent);
 
             }

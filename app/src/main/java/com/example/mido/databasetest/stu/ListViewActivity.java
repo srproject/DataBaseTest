@@ -63,7 +63,7 @@ public class ListViewActivity extends AppCompatActivity {
 
     private void ShowSQLiteDBdata() {
 
-        new CountDownTimer(1200, 1000) {
+        new CountDownTimer(1150, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);

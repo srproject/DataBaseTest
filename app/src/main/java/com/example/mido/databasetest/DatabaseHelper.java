@@ -29,30 +29,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context ) {
         super(context, DATABASE_NAME, null, 1);
 
+       // context.deleteDatabase(DATABASE_NAME);
+
+
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table Student (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME VARCHAR ,LON VARCHAR ,LAT VARCHAR)" );
-        db.execSQL("create table "+TABLE_NAME2+" ("+event_id+" INTEGER PRIMARY KEY AUTOINCREMENT, "+event_type+" VARCHAR ,"+event_det+" VARCHAR ,"+event_photo+" BLOB)" );
+
+
+        db.execSQL("create table event (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_type VARCHAR ,event_det VARCHAR ) ;" );
+
+       db.execSQL("create table Student (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME VARCHAR ,LON VARCHAR ,LAT VARCHAR) ;  " );
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS"+TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS"+TABLE_NAME2);
+        db.execSQL("DROP TABLE IF EXISTS event");
         onCreate(db);
 
     }
     /* function to add the data in database */
     public boolean insertData (String name,String lon,String lat) {
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(Col_2, name);
         contentValues.put(Col_3, lon);
         contentValues.put(Col_4, lat);
+
+
 
 
         long result = db.insert(TABLE_NAME, null, contentValues);
@@ -68,12 +78,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertDataforeventtest (String ievent_type,String ievent_det) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(event_type, ievent_type);
-        contentValues.put(event_det, ievent_det);
+        contentValues.put("event_type", ievent_type);
+        contentValues.put("event_det", ievent_det);
         //contentValues.put(event_photo, ievent_photo);
 
 
-        long result = db.insert(TABLE_NAME2, null, contentValues);
+
+
+
+        long result = db.insert("event", null, contentValues);
         if (result == -1) {
             return false;
         }
@@ -94,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllDataforeventtest() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res= db.rawQuery("select * from " +TABLE_NAME2,null);
+        Cursor res= db.rawQuery("select * from event ",null);
         return  res;
 
     }
@@ -134,6 +147,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         String UpdateRecordQuery = "DELETE FROM "+TABLE_NAME;
+
+
+        db.execSQL(UpdateRecordQuery);
+
+        return true;
+    }
+    public boolean deletallDataevent( ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        String UpdateRecordQuery = "DELETE FROM "+TABLE_NAME2;
 
 
         db.execSQL(UpdateRecordQuery);
