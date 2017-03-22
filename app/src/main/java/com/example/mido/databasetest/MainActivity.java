@@ -23,13 +23,16 @@ public class MainActivity extends AppCompatActivity {
   DatabaseHelper myDB;
     EditText editName, editSuberName, editMark,editid;
     Button buttonadd,buttonup,buttondele,buttondall,buttonshow,buttonshowevent,buttonshowmap;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(this);
 
-        copyDatabase(getApplicationContext(),"Student.db");
+
+        copyDatabase(getApplicationContext(),"Student0.db");
 
         editName = (EditText)findViewById(R.id.editName);
         editMark = (EditText)findViewById(R.id.editMark);
