@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -49,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     ArrayList<Integer> location_name = new ArrayList<Integer>();
+    List<Integer> location_id = new ArrayList<Integer>();
     LatLng newLatLng;
 
     private Circle mCircle;
@@ -89,6 +91,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Lng0.add(Double.parseDouble(lng1));
 
                         location_name.add(Integer.parseInt(name1));
+                        location_id.add(Integer.parseInt(name1));
+
                         lat = Double.parseDouble(lat1);
                         lng = Double.parseDouble(lng1);
 
@@ -182,11 +186,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Location.distanceBetween( mMarker.getPosition().latitude, mMarker.getPosition().longitude,
                                 mCircle.getCenter().latitude, mCircle.getCenter().longitude, distance);
                                 */
+                    int i=0;
+
                     Iterator<Double> iterator00 = lat0.iterator();
                     Iterator<Double> iterator0 = Lng0.iterator();
                     Iterator<LatLng> iterator = latLngs.iterator();
                     Iterator<Integer> iterator2 = location_name.iterator();
-                    while (iterator00.hasNext()) {
+                    for(int k=0; k<location_id.size(); k++) {
+                        String id=iterator2.next().toString();
 
 
                             Location.distanceBetween(iterator00.next(), iterator0.next(),
@@ -196,22 +203,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if (distance[0] > mCircle.getRadius()) {
 
 
-                                Toast.makeText(getBaseContext(), "Outside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(),String.valueOf(location_id.get(k))+ " Outside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius(), Toast.LENGTH_SHORT).show();
                             } else {
 
                                 try {
-                                    myDB.deletData(String.valueOf(iterator2.next()));
-                                    Toast.makeText(getBaseContext(), "Delete and Inside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius(), Toast.LENGTH_LONG).show();
+
+                                    myDB.deletData(String.valueOf(location_id.get(k)));
+                                   Toast.makeText(getBaseContext(),String.valueOf(location_id.get(k))+ "Delete and Inside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius(), Toast.LENGTH_SHORT).show();
 
                                 }catch (NoSuchElementException e){
 
-                                    Toast.makeText(getBaseContext(), "No"+String.valueOf(iterator2.next()), Toast.LENGTH_LONG).show();
+                                    myDB.deletData(String.valueOf(iterator2.next()));
+
+
+                                    Toast.makeText(getBaseContext(), e.toString() , Toast.LENGTH_LONG).show();
 
 
                                 }
 
 
                             }
+
+
+                            i++;
 
 
                         }
@@ -284,7 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void drawMarkerWithCircle(LatLng position){
-        double radiusInMeters = 200.0;
+        double radiusInMeters = 1000.0;
         int strokeColor = 0xffff0000; //red outline
         int shadeColor = 0x44ff0000; //opaque red fill
 
